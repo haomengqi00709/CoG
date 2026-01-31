@@ -1,0 +1,20 @@
+/** PMC search queries mapped to each UN SDG. */
+export const SDG_QUERIES: Record<number, string> = {
+  1: '("poverty" OR "low income" OR "economic deprivation" OR "social protection")',
+  2: '("food security" OR "hunger" OR "nutrition" OR "agriculture" OR "crop yield")',
+  3: '("public health" OR "disease prevention" OR "maternal health" OR "mortality" OR "well-being")',
+  4: '("education" OR "learning outcomes" OR "literacy" OR "schooling" OR "academic achievement")',
+  5: '("gender equality" OR "women empowerment" OR "gender gap" OR "female participation")',
+  6: '("water quality" OR "sanitation" OR "clean water" OR "water supply" OR "hygiene")',
+  7: '("renewable energy" OR "clean energy" OR "solar power" OR "energy access" OR "energy efficiency")',
+  8: '("economic growth" OR "employment" OR "decent work" OR "labor market" OR "entrepreneurship")',
+  9: '("innovation" OR "infrastructure" OR "industrialization" OR "technology transfer")',
+  10: '("inequality" OR "income inequality" OR "social inclusion" OR "discrimination")',
+  11: '("urban sustainability" OR "sustainable cities" OR "urban planning" OR "housing" OR "resilient cities")',
+  12: '("sustainable consumption" OR "waste management" OR "circular economy" OR "resource efficiency")',
+  13: '("climate change" OR "global warming" OR "carbon emissions" OR "climate adaptation")',
+  14: '("marine ecosystem" OR "ocean conservation" OR "marine biodiversity" OR "fisheries")',
+  15: '("biodiversity" OR "deforestation" OR "land degradation" OR "ecosystem restoration")',
+  16: '("peace" OR "justice" OR "governance" OR "rule of law" OR "corruption" OR "human rights")',
+  17: '("international cooperation" OR "global partnership" OR "development aid" OR "technology sharing")',
+};
