@@ -8,7 +8,7 @@ export function buildPrompt(inputType: "pdf" | "text", title?: string) {
   return `You are a research intelligence assistant. ${inputDescription}
 
 ${paperRef}Your tasks:
-1. Extract the author(s), publication date, and journal name (if available).
+1. Extract the author(s), publication date, email, location and journal name (if available).
 2. Identify what problem the paper studies.
 3. What it finds or concludes.
 4. Why it matters in the real world.
@@ -21,9 +21,12 @@ Return ONLY valid JSON matching this exact schema — no markdown, no code fence
 
 {
   "authors": "<comma-separated list of author names, or null if not found>",
+  "emails": "<comma-separated list of author emails, or null if not found>",
   "date_published": "<publication date as found in the paper, e.g. '2023', 'March 2024', '2024-01-15', or null if not found>",
   "journal": "<journal or conference name, or null if not found>",
-  "location_constraint": "<specific location/region, or 'No location constraint'>",
+  "research_area": "<the main problem area or topic the paper studies, in a few words>",
+  "location_constraint": "<specific location/region where the challenge needs to be completed, or 'No location constraint'>",
+  "research_location": "<location mentioned in the paper>", 
   "sdg_primary": <number 1-17>,
   "sdg_secondary": [<number>, ...],
   "summary": "<plain-language summary of the paper in 2-3 sentences>",
@@ -33,9 +36,9 @@ Return ONLY valid JSON matching this exact schema — no markdown, no code fence
     "why_it_matters": "<why this matters in the real world>"
   },
   "challenges": [
-    { "title": "<short challenge name>", "description": "<what to do and how to participate>", "location": "<specific location if this challenge is location-specific, or 'Anywhere'>" },
-    { "title": "<short challenge name>", "description": "<what to do and how to participate>", "location": "<specific location or 'Anywhere'>" },
-    { "title": "<short challenge name>", "description": "<what to do and how to participate>", "location": "<specific location or 'Anywhere'>" }
+    { "title": "<short challenge name>", "description": "<what to do and how to participate>", "location": "<specific location if this challenge is location-specific, or 'Anywhere'>", "commitment_level": "<'Easy (challenge takes about 1 day)', 'Intermediate (challenge takes about 1-7 days)', or 'Intense (challenge takes 1-4 weeks)'>", "cost_level": "<'Free', or 'Rough approximation in CAD'>", "participation_level": "<'Individual', 'Group',  'Educational Classroom', 'Institution', 'City', or 'Country'>" },
+    { "title": "<short challenge name>", "description": "<what to do and how to participate>", "location": "<specific location or 'Anywhere'>", "commitment_level": "<'Easy (challenge takes about 1 day)', 'Intermediate (challenge takes about 1-7 days)', or 'Intense (challenge takes 1-4 weeks)'>", "cost_level": "<'Free', or 'Rough approximation in CAD'>", "participation_level": "<'Individual', 'Group',  'Educational Classroom', 'Institution', 'City', or 'Country'>"},
+    { "title": "<short challenge name>", "description": "<what to do and how to participate>", "location": "<specific location or 'Anywhere'>", "commitment_level": "<'Easy (challenge takes about 1 day)', 'Intermediate (challenge takes about 1-7 days)', or 'Intense (challenge takes 1-4 weeks)'>", "cost_level": "<'Free', or 'Rough approximation in CAD'>", "participation_level": "<'Individual', 'Group',  'Educational Classroom', 'Institution', 'City', or 'Country'>"}
   ]
 }`;
 }

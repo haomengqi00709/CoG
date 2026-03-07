@@ -52,19 +52,25 @@ interface Lesson {
 interface Challenge {
   title: string;
   description: string;
+  commitment_level: string;
+  cost_level: string;
+  participation_level: string;
   location: string;
 }
 
 interface Result {
   authors: string | null;
+  emails: string | null;
   date_published: string | null;
   journal: string | null;
-  location_constraint: string;
+  research_area: string | null;
+  research_location: string;
   sdg_primary: number;
   sdg_secondary: number[];
   summary: string;
   lesson: Lesson;
   challenges: Challenge[];
+  location_constraint: string;
 }
 
 interface HistoryEntry {
@@ -249,9 +255,10 @@ export default function Home() {
       Source: h.source,
       "Analyzed At": h.analyzedAt,
       Authors: h.result.authors ?? "",
+      Emails: h.result.emails ?? "",
       Journal: h.result.journal ?? "",
       "Date Published": h.result.date_published ?? "",
-      Location: h.result.location_constraint ?? "",
+      Location: h.result.research_location ?? "",
       "Primary SDG": `SDG ${h.result.sdg_primary} — ${SDG_LABELS[h.result.sdg_primary] ?? ""}`,
       "Secondary SDGs": h.result.sdg_secondary
         .map((s) => `SDG ${s}`)
@@ -510,6 +517,12 @@ export default function Home() {
                 {result.authors}
               </p>
             )}
+            {result.emails && (
+              <p>
+                <span className="font-semibold text-gray-500">Emails:</span>{" "}
+                {result.emails}
+              </p>
+            )}
             {result.journal && (
               <p>
                 <span className="font-semibold text-gray-500">Journal:</span>{" "}
@@ -522,9 +535,15 @@ export default function Home() {
                 {result.date_published}
               </p>
             )}
+            {result.research_area && (
+              <p>
+                <span className="font-semibold text-gray-500">Research Area:</span>{" "}
+                {result.research_area}
+              </p>
+            )}
             <p>
               <span className="font-semibold text-gray-500">Location:</span>{" "}
-              {result.location_constraint}
+              {result.research_location}
             </p>
           </div>
 
@@ -581,6 +600,26 @@ export default function Home() {
                       <p className="mt-0.5 text-sm text-gray-600 leading-relaxed">
                         {c.description}
                       </p>
+                      <dl className="mt-1 space-y-0.5 text-xs text-gray-600">
+                        {c.commitment_level && (
+                          <div>
+                            <dt className="inline font-semibold">Commitment level:</dt>{" "}
+                            <dd className="inline">{c.commitment_level}</dd>
+                          </div>
+                        )}
+                        {c.cost_level && (
+                          <div>
+                            <dt className="inline font-semibold">Cost level:</dt>{" "}
+                            <dd className="inline">{c.cost_level}</dd>
+                          </div>
+                        )}
+                        {c.participation_level && (
+                          <div>
+                            <dt className="inline font-semibold">Participation level:</dt>{" "}
+                            <dd className="inline">{c.participation_level}</dd>
+                          </div>
+                        )}
+                      </dl>
                       <span
                         className={`mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
                           c.location === "Anywhere"
